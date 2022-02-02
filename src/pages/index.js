@@ -1,47 +1,100 @@
-import React from "react"
+import React, { useState } from "react"
 import useWindowSize from "../../hooks/useWindowSize"
 import iceCream from "../../static/ICE_cream_Product.gif"
 import logo from "../../static/logo.png"
+import BlackIrishLogo from "../../static/black_irish_logo.png"
 import "../../styles/global.css"
 import "../../styles/resposive.css"
 import "../../styles/bootstrap.css"
+import addToMailchimp from "gatsby-plugin-mailchimp"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 export default function Home() {
+  const [email, setEmail] = useState("")
+  const handleSubmit = async e => {
+    e.preventDefault()
+    const result = await addToMailchimp(email)
+    if (result.result === "success") {
+      toast(result.msg, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    } else {
+      toast(`${result.msg}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
+    e.target.reset()
+    setEmail("")
+  }
+
+  const handleChange = e => {
+    setEmail(e.target.value)
+  }
+
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <section className=" d-flex flex-column">
         <div id="hide" className="bg_gif"></div>
         <div className="content d-flex flex-column">
           <img src={logo} width={243} height={162} alt="" />
           <img src={iceCream} width={330} height={326} alt="" />
-          <form
-            className="form"
-            action="https://madisonbrownicecream.us14.list-manage.com/subscribe/post?u=cc8239a65f07d2b1871ac509f&amp;id=a2d5a9b530"
-            method="post"
-            id="mc-embedded-subscribe-form"
-            name="mc-embedded-subscribe-form"
-            target="_blank"
-            novalidate
-          >
-            <div class="input-group mb-3">
-              <input
-                type="email"
-                name="EMAIL"
-                id="mce-EMAIL"
-                placeholder="Email Address"
-                name="b_cc8239a65f07d2b1871ac509f_a2d5a9b530"
-                className="input text-center"
-                required
-              />
-              <input
-                type="submit"
-                value="Sign Up"
-                name="subscribe"
-                id="mc-embedded-subscribe"
-                class="button"
-              />
-            </div>
+          <form className="form" onSubmit={e => handleSubmit(e)}>
+            <input
+              type="email"
+              defaultValue={email}
+              onChange={e => handleChange(e)}
+              placeholder="Email Address"
+              name="email"
+              className="input text-center"
+            />
+            <input type="submit" className="button" value="Sign Up" />
           </form>
+          <div className="d-flex flex-row mt-3">
+            <a
+              className="text-secondary mx-2"
+              href="https://www.goblackirish.com"
+            >
+              <img src={BlackIrishLogo} width={33} height={32} alt="" />
+            </a>
+            <a
+              className="text-secondary mx-2"
+              href="https://www.instagram.com/madisonbrownfrozen/"
+            >
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
+            </a>
+            <a
+              className="text-secondary mx-2"
+              href="https://twitter.com/MadisonBrown"
+            >
+              <FontAwesomeIcon icon={faTwitter} size="2x" />
+            </a>
+          </div>
         </div>
       </section>
     </>
