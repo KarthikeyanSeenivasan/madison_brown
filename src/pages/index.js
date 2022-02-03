@@ -81,7 +81,7 @@ export default function Home() {
           <div className="d-flex flex-row mt-3">
             <a
               target="_blank"
-              className="text-secondary mx-2"
+              className="text-secondary social_icon mx-2"
               href="https://www.instagram.com/madisonbrownfrozen/"
             >
               <FontAwesomeIcon icon={faInstagram} size="2x" />
@@ -89,14 +89,14 @@ export default function Home() {
 
             <a
               target="_blank"
-              className="text-secondary mx-2"
+              className="text-secondary social_icon mx-2"
               href="https://twitter.com/MadisonBrown"
             >
               <FontAwesomeIcon icon={faTwitter} size="2x" />
             </a>
             <a
               target="_blank"
-              className="text-secondary mx-2"
+              className="text-secondary social_icon mx-2"
               href="https://www.tiktok.com/@madisonbrownicecream"
             >
               <FontAwesomeIcon icon={faTiktok} size="2x" />
