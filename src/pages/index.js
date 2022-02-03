@@ -9,7 +9,11 @@ import addToMailchimp from "gatsby-plugin-mailchimp"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons"
+import {
+  faInstagram,
+  faTwitter,
+  faTiktok,
+} from "@fortawesome/free-brands-svg-icons"
 
 export default function Home() {
   const [email, setEmail] = useState("")
@@ -76,16 +80,26 @@ export default function Home() {
           </form>
           <div className="d-flex flex-row mt-3">
             <a
+              target="_blank"
               className="text-secondary mx-2"
               href="https://www.instagram.com/madisonbrownfrozen/"
             >
               <FontAwesomeIcon icon={faInstagram} size="2x" />
             </a>
+
             <a
+              target="_blank"
               className="text-secondary mx-2"
               href="https://twitter.com/MadisonBrown"
             >
               <FontAwesomeIcon icon={faTwitter} size="2x" />
+            </a>
+            <a
+              target="_blank"
+              className="text-secondary mx-2"
+              href="https://www.tiktok.com/@madisonbrownicecream"
+            >
+              <FontAwesomeIcon icon={faTiktok} size="2x" />
             </a>
           </div>
         </div>
